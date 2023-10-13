@@ -151,7 +151,7 @@ export const addToCartThunk = createAsyncThunk(
 
         // else
         // add product to the cart of loggedIn user in database
-        const userRef = doc(db, "buybusy-redux", userLoggedIn.id);
+        const userRef = doc(db, "Users", userLoggedIn.id);
         await updateDoc(userRef, {
             cart: arrayUnion({quantity:1,...product})
         });
