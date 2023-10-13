@@ -3,7 +3,7 @@
 import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 // firebase database
-import {db} from "../../firebaseInit";
+import {db} from "../../firebase";
 import { updateDoc, doc, arrayUnion, onSnapshot, arrayRemove } from "firebase/firestore";
 
 // for toast notificatioins
@@ -39,7 +39,7 @@ export const getInitialCartOrdersThunk = createAsyncThunk(
         if(isLoggedIn){
             // getting real-time update of data
 
-            const unsub = onSnapshot(doc(db, "buybusy-redux",userLoggedIn.id), (doc) => {
+            const unsub = onSnapshot(doc(db, "Users",userLoggedIn.id), (doc) => {
                 // storing all the data in cart
                 const data = doc.data();
                 thunkAPI.dispatch(setCart(data.cart));
@@ -64,7 +64,7 @@ const updateCartInDatabase = createAsyncThunk(
         const { userLoggedIn } = authReducer;
 
         // update the cart inside the firebase database
-        const userRef = doc(db, "buybusy-redux", userLoggedIn.id);
+        const userRef = doc(db, "Users", userLoggedIn.id);
         await updateDoc(userRef, {
             cart: productReducer.cart
         });
@@ -176,7 +176,7 @@ export const removeFromCartThunk = createAsyncThunk(
         const {userLoggedIn} = authReducer;
         
         // remove the product from cart in database 
-        const userRef = doc(db, "buybusy-redux", userLoggedIn.id);
+        const userRef = doc(db, "Users", userLoggedIn.id);
         await updateDoc(userRef, {
             cart: arrayRemove(product)
         });
@@ -203,7 +203,7 @@ export const clearCartThunk = createAsyncThunk(
         }
 
         // empty cart array in database
-        const userRef = doc(db, "buybusy-redux", userLoggedIn.id);
+        const userRef = doc(db, "Users", userLoggedIn.id);
         await updateDoc(userRef, {
             cart: []
         });
@@ -227,7 +227,7 @@ export const purchaseAllThunk = createAsyncThunk(
         const currentDate=getDate();
         
         // adding order to database with data, products and amount
-        const userRef = doc(db, "buybusy-redux", userLoggedIn.id);
+        const userRef = doc(db, "Users", userLoggedIn.id);
         await updateDoc(userRef, {
             orders: arrayUnion({date:currentDate,
                                 list:productReducer.cart,

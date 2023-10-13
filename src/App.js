@@ -6,12 +6,12 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 
 // all the pages and component to render
 import Navbar from "./Component/Navbar/Navbar";
-import  Home from "./Pages/Home";
-import MyOrder from "./Pages/MyOrder";
-import Cart from "./Pages/Cart";
-import SignIn from "./Pages/SignIn";
-import SignUp  from "./Pages/SignUp";
-import  Error  from "./Pages/Error";
+import { Home } from "./Pages/Home";
+import {MyOrder} from "./Pages/MyOrder";
+import {Cart} from "./Pages/Cart";
+import {SignIn} from "./Pages/SignIn";
+import { SignUp } from "./Pages/SignUp";
+import { Error } from "./Pages/Error";
 
 // main app function 
 function App() {

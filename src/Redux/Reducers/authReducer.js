@@ -3,7 +3,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // firebase database
-import {db} from "../../firebaseInit";
+import {db} from "../../firebase";
 import { collection, addDoc, onSnapshot } from "firebase/firestore"; 
 
 // toast notification
@@ -22,7 +22,7 @@ export const getInitialUserList = createAsyncThunk(
     (args,thunkAPI) => {
         
         // getting data from firebase
-        const unsub = onSnapshot(collection(db, "buybusy-redux"),(snapShot) => {
+        const unsub = onSnapshot(collection(db, "Users"),(snapShot) => {
             const users = snapShot.docs.map((doc) => {
                 return {
                     id:doc.id,
@@ -56,7 +56,7 @@ export const createUserThunk = createAsyncThunk(
         }
 
         // if email not found create new user 
-        const docRef =await addDoc(collection(db, "buybusy-redux"), {
+        const docRef =await addDoc(collection(db, "Users"), {
             name:data.name,
             email:data.email,
             password:data.password,
