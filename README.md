@@ -1,5 +1,5 @@
 # BhararBazaar
-  BharatBazaar is a e-commerce website. It's built using React.js, Redux Toolkit, firebase as an Database and other library. 
+  BharatBazaar is a e-commerce website. It's built using React.js, Redux Toolkit, firebase as an Database and other library . 
 
 # Live project Link
   BharatBazaar--> https://comforting-alpaca-be4229.netlify.app/
